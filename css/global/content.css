@@ -1,0 +1,177 @@
+@import url(/css/global/boilerplate.css);
+@import url(/css/global/fonts.css);
+@import url(/css/global/header.css);
+
+.wrapper{
+    height: 1000px;
+    width: 1410px;
+    margin: 0 auto;
+    
+    
+}
+
+
+/* .wrapper{
+    border: 3px solid red;
+} */
+/* .second-container{
+    border: 3px solid red;
+}
+
+.third-container{
+    border: 3px solid red;
+} */
+
+
+.first-container h1{
+    color: white;
+    font-weight: 700;
+    font-size: 64px;
+}
+
+.first-container p{
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top:32px;
+    margin-bottom: 72px;
+}
+
+.first-sub-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+
+.first-container{
+    margin-top: 128px;
+    padding: 0px 41px;
+    margin-bottom:82px;
+}
+
+
+.right h1{
+    margin: 0;
+    padding: 0;
+    color:hsla(191, 73%, 98%, 0.05);
+    font-size: 160px;
+}
+
+
+.second-container{
+    padding: 0px 41px;
+    margin-bottom: 82px;
+}
+
+
+.second-container h2{
+    color:white;
+    font-weight:600;
+    font-size: 42px;
+}
+.second-container p{
+    color:white;
+    text-align: center;
+}
+
+.second-sub-container {
+    display: flex;
+    width: 1356px;
+    justify-content: space-between;
+}
+
+.second-sub-container .left{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 45%;
+}
+
+.second-sub-container .right{
+    display: flex;
+    width: 45%;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.button .random-button {
+    color: white;
+    background-color: white; 
+    border-radius: 12px; 
+    border: 2px solid transparent; 
+    height: 56px;
+    width: 120px; 
+    cursor: pointer; 
+
+}
+
+
+.line{
+    margin: 0 auto;
+    padding: 0px 41px;
+    width: 1355px;
+    margin-bottom: 150px;
+}
+
+.line hr{
+    color: #0096C7;
+}
+
+
+.third-container {
+    padding: 0px 41px;
+    margin-bottom: 120px;
+}
+
+.third-container .cont{
+    min-width: 330px;
+}
+
+.third-container .text{
+    line-height: 2;
+    font-size: 15px;
+}
+
+.third-sub-container{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    
+}
+.third-container h2{
+    color:white; 
+    font-weight: 600;
+    font-size: 42px;
+    margin-bottom: 100px;
+}
+
+.third-container .header{
+    margin-bottom: 32px;
+}
+.third-container img{
+    margin-bottom: 48px;
+}
+
+.third-container h3, .third-container{
+    color:white; 
+    font-weight: 400;
+}
+
+
+.frame9{
+    max-width: 100%;
+    margin-top: 100px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
