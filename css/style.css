@@ -2,79 +2,8 @@
 @import url(/css/global/fonts.css);
 @import url(/css/global/header.css);
 @import url(/css/global/content.css);
+@import url(/css/global/footer.css);
 
 
 
 
-
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-
-.page-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-}
-
-
-.wrapper {
-    flex: 1; 
-}
-
-
-footer {
-    width: 100%; 
-    background-color: var(--dark-blue);
-    padding: 20px 0; /* Optional vertical padding for footer */
-}
-
-.footer-content {
-    max-width: 1356px; /* Match the container width of the header */
-    margin: 0 auto;    /* Center the footer content */
-    display: flex;
-    justify-content: space-between; /* Space between the footer elements */
-    align-items: center; /* Vertically align items */
-    padding-left: 20px;
-}
-
-.socials {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Spacing between logo and text */
-}
-
-.title h1 {
-    font-family: 'Brown Sugar', sans-serif;
-    font-size: 36px;
-    margin: 0;
-    letter-spacing: 5px; 
-    color: #ADE8F4;
-    font-weight: 200;
-}
-
-.title p {
-    font-family: 'Brown Sugar', sans-serif;
-    font-size: 26px;
-    margin: 0;
-    color: #ADE8F4;
-}
-
-.footer-content .text {
-    color: white;
-    font-style: italic;
-    font-size: 20px;
-    margin-left: 200px;
-    
-}
-
-.footer-content .text p {
-    margin: 0; /* Reset default paragraph margins */
-}
-
-.socials {
-    flex-shrink: 0; /* Ensure fixed size */
-}
