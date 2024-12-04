@@ -82,9 +82,12 @@ class UserModel {
             // Hash the password before storing it
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
+            // Get the current timestamp
+            $registeredDate = date('Y-m-d H:i:s');
+    
             // Prepare SQL query
-            $sql = "INSERT INTO staff (fname, lname, email, password, phone, specialty) 
-                    VALUES (:fname, :lname, :email, :password, :phone, :specialty)";
+            $sql = "INSERT INTO staff (fname, lname, email, password, phone, specialty, registered_date) 
+                    VALUES (:fname, :lname, :email, :password, :phone, :specialty, :registered_date)";
             $stmt = $this->conn->prepare($sql);
     
             // Bind parameters
@@ -94,7 +97,7 @@ class UserModel {
             $stmt->bindParam(':password', $hashedPassword); // Bind hashed password
             $stmt->bindParam(':phone', $phone);
             $stmt->bindParam(':specialty', $specialty);
-         
+            $stmt->bindParam(':registered_date', $registeredDate); // Bind the current timestamp
     
             // Execute the query
             $stmt->execute();
@@ -102,10 +105,12 @@ class UserModel {
         } catch (PDOException $e) {
             return false;
         }
+    }
     
     
     
-}
+
+
     // Get all staff members (admins)
     public function getAllStaff() {
         $query = "SELECT * FROM staff";
