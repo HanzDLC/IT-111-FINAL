@@ -1,0 +1,44 @@
+
+
+
+.project-first-container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.project-first-container h1{
+    color:white;
+    font-size: 64px;
+}
+
+
+.mood-board{
+    margin-top: 60px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 560px;
+}
+
+
+.mood-board-left{
+    display: flex;
+    align-items: center;
+
+    width: 20%;
+    height: 560px;
+}
+
+.mood-board-left{
+    color: white;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+
+.mood-board-right{
+    
+    height: 560px;
+    width: 80%;
+}

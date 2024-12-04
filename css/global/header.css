@@ -16,19 +16,22 @@ header {
 }
 
 .header-content {
-    max-width: 1356px; 
-    margin: 0 auto;    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    padding: 0 20px;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
-    margin-right: 20px;
-    font-size: 12px;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
 
@@ -45,20 +48,27 @@ li, a{
 
 .login {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+.login p {
+    margin: 0;
+    color: white;
 }
 
 .login a {
-    display: inline-block;
-    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
 .social-links {
     display: flex;
     gap: 10px;
-    padding-top: 10px;
-    margin-right: 20px;
 }
+
+
 
 .container {
     max-width: 1410px; /* Keep container width constrained */

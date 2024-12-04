@@ -1,0 +1,135 @@
+@import url(css/global/boilerplate.css);
+@import url(css/global/fonts.css);
+@import url(css/global/header.css);
+@import url(css/global/content.css);
+@import url(css/global/footer.css);
+
+
+
+.services-wrapper{
+    height: 100%;
+    width: 1410px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.services-wrapper .left{
+    width: 100%;
+    width: 614;
+    margin: 42px;
+    
+}
+
+.services-wrapper .right{
+    width: 100%;
+    max-width: 614;
+    margin: 42px;
+    
+}
+
+
+.hero-text h1{
+    font-weight:700;
+    font-size: 64px;
+    color: white;
+    margin-bottom: 32px;
+}
+
+.hero-text p{
+    font-family: 'Open Sans';
+    line-height: 2;
+    margin-left: 98px;
+    text-align: left;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 180px;
+    color: white;
+}
+
+.left .img{
+    z-index: 0;
+    position: relative;
+}
+.left .card{
+    padding: 32px;
+    z-index: 1;
+    position: relative;
+    margin-top: -60px;
+    margin-left: 196px;
+    justify-content: right;
+    height: 159px;
+    width: 419px;
+    
+    background-color: black;
+    color: white;
+}
+
+
+.card h2{
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+
+.card .card-text{
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 40px;
+}
+
+.services-wrapper .right img{
+    z-index: 0;
+    position: relative;
+}
+
+.services-wrapper .right .card{
+    padding: 32px;
+    z-index: 1;
+    position: relative;
+    height: 159px;
+    width: 419px;
+    background: black;
+    color: white;
+    margin-top: -50px;
+    margin-left: 4px;
+    margin-bottom: 100px;
+}
+
+
+
+.laptop-img{
+    margin-left: 130px;
+    z-index: 0;
+    position: relative;
+}
+
+
+.card-bottom{
+    padding: 32px;
+    z-index: 1;
+    position: relative;
+    height: 159px;
+    width: 419px;
+    background: black;
+    color: white;
+    margin-top: -50px;
+    margin-left: 196px;
+}
+
+.card-bottom .card-text{
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 40px;
+}
+
+.card-bottom h2{
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 24px;
+    
+}
