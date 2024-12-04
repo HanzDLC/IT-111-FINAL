@@ -245,5 +245,68 @@ class UserModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+
+    public function updateBookingStatus($bookingId, $status) {
+        // Ensure connection is valid
+        if (!$this->conn) {
+            die("Database connection is not available.");
+        }
+
+        try {
+            $query = "UPDATE booking SET status = :status WHERE booking_id = :booking_id";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':booking_id', $bookingId, PDO::PARAM_INT);
+
+            // Execute the query
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error updating booking status: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getBookingsByStatus($status) {
+        // Query to fetch bookings by status, including customer name and package name
+        $query = "SELECT 
+                    b.booking_id, 
+                    CONCAT(c.fname, ' ', c.lname) AS customer_name, 
+                    p.package_name, 
+                    b.booking_date, 
+                    b.event_date, 
+                    b.status, 
+                    b.time_start, 
+                    b.time_end, 
+                    b.total_price 
+                 FROM 
+                    booking b
+                 INNER JOIN 
+                    customer c ON b.customer_id = c.customer_id
+                 INNER JOIN 
+                    package p ON b.package_id = p.package_id
+                 WHERE 
+                    b.status = :status
+                 ORDER BY 
+                    b.event_date ASC"; // Order by booking_id in ascending order
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        
+        // Fetch all results
+        $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Check if any results are returned and print for debugging if necessary
+        if (!$bookings) {
+            // No bookings found
+            return [];
+        }
+        
+        // Return the fetched bookings
+        return $bookings;
+    }
+    
+    
 }   
 ?>

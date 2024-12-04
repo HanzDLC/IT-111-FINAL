@@ -165,6 +165,20 @@ class UserController {
     public function getAllBookings() {
         return $this->userModel->getAllBookings();
     }
+
+    public function updateBookingStatus($bookingId, $status) {
+        // Call the method from the model to update the status in the database
+        $userModel = new UserModel();
+        return $userModel->updateBookingStatus($bookingId, $status);
+    }
+    
+    
+    public function getBookingsByStatus($status) {
+        // Call the method from the model to update the status in the database
+        $userModel = new UserModel();
+        return $userModel->getBookingsByStatus($status);
+    }
 }
+
 
 ?>

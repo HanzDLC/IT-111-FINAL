@@ -11,24 +11,24 @@ if (isset($_GET['action'], $_GET['booking_id'])) {
 
     if ($action === 'confirm') {
         $isConfirmed = $userController->updateBookingStatus($bookingId, 'Confirmed');
-        if ($isConfirmed) {
-            echo "<p style='color: green;'>Booking confirmed successfully!</p>";
-        } else {
-            echo "<p style='color: red;'>Failed to confirm booking. Try again.</p>";
-        }
+        $message = $isConfirmed ? 'Booking confirmed successfully!' : 'Failed to confirm booking.';
     } elseif ($action === 'decline') {
         $isDeclined = $userController->updateBookingStatus($bookingId, 'Declined');
-        if ($isDeclined) {
-            echo "<p style='color: green;'>Booking declined successfully!</p>";
-        } else {
-            echo "<p style='color: red;'>Failed to decline booking. Try again.</p>";
-        }
+        $message = $isDeclined ? 'Booking declined successfully!' : 'Failed to decline booking.';
     }
+    
+    // Redirect back to the viewbooking page, without the action and booking_id in the URL
+    header("Location: viewbooking.php");
+    exit; // Ensure the script stops executing after the redirect
 }
 
-// Fetch all bookings
-$bookingList = $userController->getAllBookings();
+// Fetch all bookings based on status
+$pendingBookings = $userController->getBookingsByStatus('Pending');
+$confirmedBookings = $userController->getBookingsByStatus('Confirmed');
+$declinedBookings = $userController->getBookingsByStatus('Declined');
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,9 +96,10 @@ $bookingList = $userController->getAllBookings();
 </head>
 <body>
     <div class="content">
+        <!-- Pending Bookings Table -->
         <div class="booking-container">
-            <h2>View Bookings</h2>
-            <table>
+            <h2>Pending Bookings</h2>
+            <table id="pendingTable">
                 <thead>
                     <tr>
                         <th>Booking ID</th>
@@ -114,9 +115,9 @@ $bookingList = $userController->getAllBookings();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($bookingList)) : ?>
-                        <?php foreach ($bookingList as $booking) : ?>
-                            <tr>
+                    <?php if (!empty($pendingBookings)) : ?>
+                        <?php foreach ($pendingBookings as $booking) : ?>
+                            <tr id="booking<?= $booking['booking_id'] ?>">
                                 <td><?= htmlspecialchars($booking['booking_id']) ?></td>
                                 <td><?= htmlspecialchars($booking['customer_name']) ?></td>
                                 <td><?= htmlspecialchars($booking['package_name']) ?></td>
@@ -127,8 +128,8 @@ $bookingList = $userController->getAllBookings();
                                 <td><?= htmlspecialchars($booking['time_end']) ?></td>
                                 <td><?= htmlspecialchars($booking['total_price']) ?></td>
                                 <td>
-                                    <button class="btn btn-green">Confirm</button>
-                                    <button class="btn btn-red">Decline</button>
+                                    <button type="button" class="btn btn-green btn-confirm" data-booking-id="<?= $booking['booking_id'] ?>">Confirm</button>
+                                    <button type="button" class="btn btn-red btn-decline" data-booking-id="<?= $booking['booking_id'] ?>">Decline</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -140,6 +141,120 @@ $bookingList = $userController->getAllBookings();
                 </tbody>
             </table>
         </div>
+
+        <!-- Confirmed Bookings Table -->
+        <div class="booking-container">
+            <h2>Confirmed Bookings</h2>
+            <table id="confirmedTable">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Customer Name</th>
+                        <th>Package Name</th>
+                        <th>Booking Date</th>
+                        <th>Event Date</th>
+                        <th>Status</th>
+                        <th>Time Start</th>
+                        <th>Time End</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($confirmedBookings)) : ?>
+                        <?php foreach ($confirmedBookings as $booking) : ?>
+                            <tr id="booking<?= $booking['booking_id'] ?>">
+                                <td><?= htmlspecialchars($booking['booking_id']) ?></td>
+                                <td><?= htmlspecialchars($booking['customer_name']) ?></td>
+                                <td><?= htmlspecialchars($booking['package_name']) ?></td>
+                                <td><?= htmlspecialchars($booking['booking_date']) ?></td>
+                                <td><?= htmlspecialchars($booking['event_date']) ?></td>
+                                <td><?= htmlspecialchars($booking['status']) ?></td>
+                                <td><?= htmlspecialchars($booking['time_start']) ?></td>
+                                <td><?= htmlspecialchars($booking['time_end']) ?></td>
+                                <td><?= htmlspecialchars($booking['total_price']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="9">No confirmed bookings available.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Declined Bookings Table -->
+        <div class="booking-container">
+            <h2>Declined Bookings</h2>
+            <table id="declinedTable">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Customer Name</th>
+                        <th>Package Name</th>
+                        <th>Booking Date</th>
+                        <th>Event Date</th>
+                        <th>Status</th>
+                        <th>Time Start</th>
+                        <th>Time End</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($declinedBookings)) : ?>
+                        <?php foreach ($declinedBookings as $booking) : ?>
+                            <tr id="booking<?= $booking['booking_id'] ?>">
+                                <td><?= htmlspecialchars($booking['booking_id']) ?></td>
+                                <td><?= htmlspecialchars($booking['customer_name']) ?></td>
+                                <td><?= htmlspecialchars($booking['package_name']) ?></td>
+                                <td><?= htmlspecialchars($booking['booking_date']) ?></td>
+                                <td><?= htmlspecialchars($booking['event_date']) ?></td>
+                                <td><?= htmlspecialchars($booking['status']) ?></td>
+                                <td><?= htmlspecialchars($booking['time_start']) ?></td>
+                                <td><?= htmlspecialchars($booking['time_end']) ?></td>
+                                <td><?= htmlspecialchars($booking['total_price']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="9">No declined bookings available.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script>
+    // Add event listeners to buttons for confirming or declining bookings
+    document.querySelectorAll('.btn-confirm').forEach(button => {
+        button.addEventListener('click', function() {
+            const bookingId = this.getAttribute('data-booking-id');
+            // Use a fetch request to perform the action and reload the page after a successful update
+            fetch(`viewbooking.php?action=confirm&booking_id=${bookingId}`)
+                .then(response => {
+                    location.reload();  // Reload the page to reflect updated bookings
+                })
+                .catch(error => {
+                    alert('Error confirming booking.');
+                });
+        });
+    });
+
+    document.querySelectorAll('.btn-decline').forEach(button => {
+        button.addEventListener('click', function() {
+            const bookingId = this.getAttribute('data-booking-id');
+            // Use a fetch request to perform the action and reload the page after a successful update
+            fetch(`viewbooking.php?action=decline&booking_id=${bookingId}`)
+                .then(response => {
+                    location.reload();  // Reload the page to reflect updated bookings
+                })
+                .catch(error => {
+                    alert('Error declining booking.');
+                });
+        });
+    });
+</script>
+
+
 </body>
 </html>
